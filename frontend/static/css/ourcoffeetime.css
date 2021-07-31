@@ -1,0 +1,139 @@
+body {
+    background-color: #FEFAE0;
+    padding: 0%;
+    font-family: 'STIX Two Text';
+    margin: 0%;
+    display: block;
+}
+
+.background{
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    padding: 0;
+    z-index: -1;
+    margin-top: 0cm;
+    margin-left: 0cm;
+    bottom: 0%;
+    position: absolute;
+  }
+
+.logo{
+    position: absolute;
+    top:9%;
+    
+    /* margin-top: 2%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto; */
+    text-align: center;
+    max-width: 100px;
+    max-width: 100px;
+    /* margin-bottom: 0%; */
+}
+.title{
+    margin-top: 12%;
+    text-align: center;
+    font-size: 80px;
+    background: -webkit-linear-gradient(
+    left,
+    #606C38,
+    #4e582d, 
+    #0b0f06,
+    #1a2410
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 0%;
+  animation-name: load;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+}
+
+h1{
+    position: relative;
+}
+
+@keyframes bounce {
+    0%{margin-top: 0%;}
+    50%{margin-top: 3%;}
+    100%{margin-top: 0%;}
+  }
+  .button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 28px;
+    font-family: "Rubik";
+    text-align: center;
+    text-decoration: none;
+    margin: 0 auto;
+    display: block;
+    font-size: 16px;
+    border-radius: 8px;
+    animation-name: bounce;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transition-duration: 0.4s;
+  }
+
+  .button:hover{
+      color: black;
+      background-color: white;
+  }
+
+  nav{
+    position: relative;
+    float: right;
+    display: inline;
+    width: fit-content;
+    margin: 2%;
+    padding: 0%;
+    text-align: right;
+    animation-name: load;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+  }
+    nav span{
+        display: inline;
+        padding: 0.2cm;
+        font-size: 18px;
+        text-decoration: none;
+  }
+
+  .desc{
+    animation-name: load;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+  }
+/* 
+  @keyframes load {
+    0%{
+        margin-bottom: 0%;
+        opacity: 0;
+    }
+    50%{
+        margin-bottom: 3%;
+        opacity: 0.5;
+    }
+    100%{
+        margin-bottom: 0%;
+        opacity: 1;
+    }
+  } */
+  a {
+      text-decoration: none;
+      color: #0b0f06;
+  }
+  
+  @media screen and (max-width: 830px) {
+    .title{
+        font-size: 40;
+    }
+
+}

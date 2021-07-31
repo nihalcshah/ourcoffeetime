@@ -1,22 +1,21 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"  href="{% static 'css/ourcoffeetime.css'  %}">
-    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
-    <title>Our Coffe Time</title>
-</head>
-<style>
-    
-</style>
 
-<body>
-    <div>Hello</div>
-    <div>{{results}}</div>
-    
-</body>
+{% block content %}
 
-</html>
+<section>
+    <div style="text-align: center;">
+        <br>
+        
+        <h1 class="title">Our Coffee Time
+            <!-- <img class="logo" src="{% static 'media/CoffeeTime.png'%}"> -->
+        </h1>
+        <span class="desc" style="margin-top: 0%;">
+            Our simple tool to help plan get-togethers!
+        </span>
+        <br><br>
+
+        <a style="text-decoration: none;" href="{%url 'coffee' %}"><button class="button">Get Started ➡ </button></a>
+    </div>
+</section>
+{% endblock %}

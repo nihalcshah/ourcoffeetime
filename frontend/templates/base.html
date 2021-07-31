@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{% static 'css/ourcoffeetime.css'  %}">
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@500&display=swap" rel="stylesheet">
+    <title>Our Coffee Time</title>
+</head>
+<style>
+    
+</style>
+<img class="background" src="{% static 'media/bottom.png'%}"/>
+<body>
+    <!-- <div>Hello</div>
+    <div>{{results}}</div> -->
+    <!-- <div class="center"> -->
+        
+    <!-- </div> -->
+    <nav>
+        <a href="{%url 'home'%}"><span class="navpart">Home</span>
+        <a href="{%url 'coffee'%}"></a><span class="navpart">Plan</span>
+        <a href="{%url 'about'%}"></a><span class="navpart">About</span>
+    </nav>
+    {% block content %}     
+
+    {% endblock %}
+
+
+    
+    
+    
+</body>
+
+</html>
