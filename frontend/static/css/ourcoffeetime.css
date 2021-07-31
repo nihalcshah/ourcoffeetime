@@ -89,7 +89,7 @@ h1{
     position: relative;
     float: right;
     display: inline;
-    width: fit-content;
+    width: 100%;
     margin: 2%;
     padding: 0%;
     text-align: right;
@@ -136,4 +136,26 @@ h1{
         font-size: 40;
     }
 
+}
+
+.form{
+   float: left; margin-left: 2%;
+}
+
+.question{
+  font-size: 30px;
+}
+
+.selections{
+  background-color: #1a2410;
+  color: white;
+  font-family: 'STIX Two Text';
+  font-size: 22px;
+  border: none;
+  padding: 3%;
+  margin: 2%;
+}
+
+.selections:visited{
+  background-color: #4e582d;
 }
