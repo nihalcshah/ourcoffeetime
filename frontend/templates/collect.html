@@ -4,26 +4,27 @@
 {% block content %}
 
 <section style="display: block;" >
+    <h1 class="title" style="margin-top: 0%; margin-left: 2%; float: left; width: 100%; text-align: left;">Plan</h1>
     <div class="form">
-        <h1 class="title" style="margin-top: 0%; margin-left: 0%; float: left; width: 100% ;">Plan</h1>
-
-        <br>
-        <br>
+        
         <div>
             <span class="question">{{question}}</span>
-            <form method="POST" action="">
+            <form method="post" action="">
                 {% csrf_token %} 
-                <div >
+                <div style="display: inline-flexbox;" >
                     {% for t in types%}
+                    <label class="container">{{t.name}}
                     <input
-                        class="selections"
-                        type="submit"
+                        type="checkbox"
                         name="{{question}}"
-                        value={{t.name}}
+                        value="{{t.name}}"
                     />
+                        <span class="checkmark"></span>
+                    </label>
                     {% endfor %}
+                    
                 </div>
-                
+                <button type="submit" class="button" style="float: left; animation: none;">Submit</button>
             </form>
         </div>
             <!-- <img class="logo" src="{% static 'media/CoffeeTime.png'%}"> -->
