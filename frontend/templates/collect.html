@@ -12,11 +12,11 @@
             
             <span class="question">{{question}}</span>
             <br>
-            <div style="display: inline-block; width: 48%;">
+            <div style="display: inline-block; width: 98%;">
                 
                 <form method="post" action=>
                     {% csrf_token %} 
-                    <div style="display: inline-flexbox; width: 98%;" >
+                    <div style="display: inline-flexbox;" >
                         {% for t in types%}
                         <label class="container">{{t.name}}
                             <input
