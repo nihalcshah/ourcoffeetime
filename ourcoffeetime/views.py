@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from getdist.models import TestResults, TypesOfPlaces, Question, SearchServices
 import requests, json
+from django.db import IntegrityError
 from .trial import findList
 # Create your views here.
 
@@ -33,18 +34,28 @@ def collect_view(request):
         # if len(selection)>=1:
         #     for s in selection:
         #         string += s + " "
-        search.location = location
-        search.places = selection
+        try:
+            search.location = location
+            search.places = selection
+            search.save()
+        except IntegrityError:
+            search.location = "_"
+            search.places = "_"
+            search.save()
         # search.places = string[:-1]
         location = ""
         selection = ""
-        search.save()
+        
         return render(request, "collect.html", context = {
             'question':q, 
             'types': types,
         })
     else:
         q = get_object_or_404(Question)
+        search = get_object_or_404(SearchServices)
+        search.location = "_"
+        search.places = "_"
+        search.save()
         return render(request, "collect.html", context = {
             'question':q, 
             'types': q.ty.all,
@@ -54,18 +65,17 @@ def about_view(request):
 
 
 def results_view(request):
-    api_key = 'NbEE2licArPR88IEjsCsbm6YhSF4_elK2Wu-StTxq9Ee-UG-C1gxyTiZv7s_g1nxDnSlFxLpeEpfiFX5FTVnwdCFrgH7fwNHP9PG55O5c7Osijhk_zC95ob2Zb8FYXYx'
-    search_api_url = 'https://api.yelp.com/v3/businesses/search'
-    search = get_object_or_404(SearchServices)
-    location=search.location
-    selection =  search.places
-    if location == "" or selection=="_":
-        return render(request, "results.html", context = {
-            'results':'There are no results'
-        })
-    else:
-        results = findList(location, selection)
+    if request.method == 'POST':
         
+        
+        search = get_object_or_404(SearchServices)
+        
+        # selection = request.POST.getlist(q.question)
+        location = search.location
+        selection = request.POST.get('categories')
+        print(location)
+        print(selection)
+        results = findList(location, selection)
         name = results['name']
         maps = "https://www.google.com/maps/search/"+name
         imageurl = results['imageurl']
@@ -80,6 +90,7 @@ def results_view(request):
                 'name' : name,
                 'imageurl' : imageurl,
                 'url' : url,
+                'results': True,
                 'address' : address,
                 'mapsurl': maps,
                 'phone' : phone,
@@ -93,11 +104,58 @@ def results_view(request):
                 'imageurl' : imageurl,
                 'url' : url,
                 'address' : address,
+                'results': True,
                 'mapsurl': maps,
                 'phone' : phone,
                 'rating' : rating,
                 'price' : "Inexpensive",
                 'types' : types,
             })
+    else:
+        search = get_object_or_404(SearchServices)
+        location=search.location
+        selection =  search.places
+        if location == "_" or selection=="_":
+            return render(request, "results.html", context = {
+                    'results': False,
+                })
+        else:
+            results = findList(location, selection)
+            
+            name = results['name']
+            maps = "https://www.google.com/maps/search/"+name
+            imageurl = results['imageurl']
+            url = results['url']
+            address = results['address']
+            phone = results['phone']
+            rating = results['rating']
+            types = results['type']
+            if 'price' in results.keys():
+                price = results['price']
+                return render(request, "results.html", context = {
+                    'name' : name,
+                    'imageurl' : imageurl,
+                    'url' : url,
+                    'results': True,
+                    'address' : address,
+                    'mapsurl': maps,
+                    'phone' : phone,
+                    'rating' : rating,
+                    'price' : price,
+                    'types' : types,
+                })
+            else:
+                return render(request, "results.html", context = {
+                    'name' : name,
+                    'imageurl' : imageurl,
+                    'url' : url,
+                    'address' : address,
+                    'results': True,
+                    'mapsurl': maps,
+                    'phone' : phone,
+                    'rating' : rating,
+                    'price' : "Inexpensive",
+                    'types' : types,
+                })
 
     
