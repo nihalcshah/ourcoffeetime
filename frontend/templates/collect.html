@@ -4,32 +4,41 @@
 {% block content %}
 
 <section style="display: block;" >
-    <h1 class="title" style="margin-top: 0%; margin-left: 2%; float: left; width: 100%; text-align: left;">Plan</h1>
+    <h1 class="title" style="margin-top: 0%; margin-left: 2%; float: left; width: 98%; text-align: left;">Plan</h1>
     <div class="form">
         
         <div>
             <span class="question">{{question}}</span>
             <form method="post" action="">
                 {% csrf_token %} 
-                <div style="display: inline-flexbox;" >
-                    {% for t in types%}
-                    <label class="container">{{t.name}}
-                    <input
-                        type="checkbox"
-                        name="{{question}}"
-                        value="{{t.name}}"
-                    />
-                        <span class="checkmark"></span>
-                    </label>
-                    {% endfor %}
+                <div style="display: inline-block;">
+                    <div style="display: inline-flexbox;" >
+                        {% for t in types%}
+                        <label class="container">{{t.name}}
+                            <input
+                                type="radio"
+                                name="{{question}}"
+                                value="{{t.name}}"
+                            />
+                            <span class="checkmark"></span>
+                        </label>
+                        {% endfor %}
+                        
+                    </div>
+                    <label class="location" style="display: inline-block;width: 100%;"> Location <input type="text" name="textfield"></label>
+                    <br><br><br>
+                    <button type="submit" class="button" style="float: left; animation: none;">Submit</button>
                     
                 </div>
-                <button type="submit" class="button" style="float: left; animation: none;">Submit</button>
             </form>
+            <br>
+            <a href="{%url 'results' %}"><button class="button" style="float: left; animation: none;">To Results</button></a>
         </div>
             <!-- <img class="logo" src="{% static 'media/CoffeeTime.png'%}"> -->
-        
-        
+        <br>
+            
     </div>
+
+    
 </section>
 {% endblock %}

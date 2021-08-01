@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section>
+
+    <h1 class="title" style="margin-top: 0%;  text-align: left;margin-left: 2%;">Results</h1>
+    <div style="margin-left: 2%; float: left; ">
+        <div style="display: inline-block;">
+            <span style="font-size: 21px; font-weight: bold;">{{name}}</span>
+            <br>
+            <div style="font-size: 19px; ">
+                <a href="{{url}}">Yelp Page</a>
+                <br>
+                <span>{{address}}</span><br>
+                <span>{{phone}}</span><br>
+                <span>Rating: {{rating}}★</span><br>
+                <span>Categories:</span>
+            </div>
+            <br>
+            <span style="font-size: 12px; display:block;">
+                {% for t in types%}
+                    <span class="types">{{t}}</span><br><br><br>
+                {% endfor %}
+            </span>
+        </div>
+        <div style="display: inline-block;">
+            <img class="displayimage" src="{{imageurl}}" />
+        </div>
+
+    </div>
+
+    
+</section>
+{% endblock %}
