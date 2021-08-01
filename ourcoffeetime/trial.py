@@ -1,7 +1,4 @@
 import requests,json
-import pytest
-import yelp
-from yelp.client import Client
 # enter your api key here
 
 
