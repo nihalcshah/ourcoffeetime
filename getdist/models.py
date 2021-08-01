@@ -16,14 +16,17 @@ class TypesOfPlaces(models.Model):
         return self.name
 class Question(models.Model):
     question = models.CharField(max_length=1000)
+    style = models.CharField(max_length=1000, default="_")
+    previous = models.BooleanField(default=False)
     ty = models.ManyToManyField(TypesOfPlaces)
-
+    
     def __str__(self):
-        return self.question
+        return self.style
 
 class SearchServices(models.Model):
     location = models.CharField(max_length=1000, default="Fairfax")
     places = models.CharField(max_length=5000, default="")
+
 
 # class TypesOfPlaces(models.Model):
 #     question = models.CharField(max_length=1000)

@@ -3,7 +3,8 @@
 
 {% block content %}
 
-<section>
+<section >
+    <div style="display: block;">
     <img class="background" src="{% static 'media/resultsbg.png'%}"/>
     <h1 class="title" style="margin-top: 0%; margin-left: 2%; float: left; width: 98%; text-align: left;">Results</h1>
     <div style="margin-left: 2%; float: left;">
@@ -27,6 +28,7 @@
                         <input class="types" name="categories" value="{{t}}" type="submit"><br><br>
                     {% endfor %}
                 </span>
+                <button class="button" value="{{name}}" name="try" type="submit" style="animation: none;">Try Something Else!</button>
             </form>
         </div>
         <div style="display: inline-block;">
@@ -42,7 +44,13 @@
 
         {% endif %}
     </div>
+    
 
+    </div>
+    <br>
+    <div style="display: block;">
+       
+    </div>
     
 </section>
 {% endblock %}

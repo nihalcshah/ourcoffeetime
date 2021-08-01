@@ -249,7 +249,7 @@ input:checked .container{
   border: none;
   color: white;
   background-color: #606C38;
-  padding: 1%;
+  padding: 15px;
 }
 
 .location input[type='text']:focus{
@@ -260,12 +260,20 @@ input:checked .container{
 }
 
 .types{
+  color: white;
   padding: 3%;
+  font-family: "STIX Two Text";
   background-color: #0b0f06;
-  color: #FEFAE0;
+  text-decoration: none;
+  border: none;
   border-radius:25px; 
   margin:2px;
   margin-bottom: 2%;
+}
+
+.types:hover{
+  background-color: cornflowerblue;
+  color: black;
 }
 
 .displayimage{
@@ -289,7 +297,6 @@ input:checked .container{
   text-decoration: none;
   
   margin: 0 auto;
-  margin-left: 4%;
   display: inline-block;
   font-size: 16px;
   border-radius: 8px;
