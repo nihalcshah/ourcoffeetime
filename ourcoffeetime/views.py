@@ -27,14 +27,23 @@ def collect_view(request):
         for i in q:
             if(i.previous == True):
                 p = i
-        print(p)
-        print(p.question)
+        search = get_object_or_404(SearchServices)
         types = TypesOfPlaces.objects.all()
         selection = request.POST.get('Output')
-        keyword = request.POST.get('Keyword', default="")
-        location = request.POST.get('textfield', None)
-        print(location)
+        keyword = request.POST.get('keyword', default="")
+        k = request.POST.get('textfield', None)
+        location = None
+        if not k==None:
+            location = k
+        if location:
+            print("location " + location)
+            search.location = location
+            search.save()
+        if selection:
+            search.places = selection
+            search.save()
         print(selection)
+        print("searches " + search.location)
 
         if(selection=="Drinks"):
             
@@ -47,25 +56,25 @@ def collect_view(request):
             p.previous = True
             p.save()
             search = get_object_or_404(SearchServices)
-            try:
-                search.location = location
-                if keyword:
-                    search.places = selection + keyword
-                else:
-                    search.places = selection
-                search.save()
-            except IntegrityError:
-                search.location = "_"
-                search.places = "_"
-                search.save()
+            print(search.location)
+            # try:
+            search.location = location
+            if keyword:
+                search.places = keyword
+            else:
+                search.places = selection
+            search.save()
+            # except IntegrityError:
+            #     search.location = "_"
+            #     search.places = "_"
+            #     search.save()
             # search.places = string[:-1]
-            location = ""
-            selection = ""
             print(p.question)
             return render(request, "collect.html", context = {
                 'question':p, 
                 'show':True,
                 'types': p.ty.all,
+                'loc': False
             })
         
         if(selection=="Food"):
@@ -82,7 +91,7 @@ def collect_view(request):
             try:
                 search.location = location
                 if keyword:
-                    search.places = selection + keyword
+                    search.places = keyword
                 else:
                     search.places = selection
                 search.save()
@@ -98,26 +107,15 @@ def collect_view(request):
                 'question':p, 
                 'show':True,
                 'types': p.ty.all,
+                'loc': False
             })
 
-        p = ""
-        for i in q:
-            if(i.style == "_"):
-                p = i
+        # p = ""
+        # for i in q:
+        #     if(i.style == "_"):
+        #         p = i
 
-        search = get_object_or_404(SearchServices)
-        try:
-            search.location = location
-            if keyword:
-                search.places = selection + keyword
-            else:
-                search.places = selection
-            search.save()
-        except IntegrityError:
-            search.location = "_"
-            search.places = "_"
-            search.save()
-        # search.places = string[:-1]
+        print("searches " + search.location)
         location = ""
         selection = ""
         
@@ -125,6 +123,7 @@ def collect_view(request):
             'question':p, 
             'show':False,
             'types': p.ty.all,
+            'loc': True
         })
     else:
         q = Question.objects.all()
@@ -140,6 +139,7 @@ def collect_view(request):
             'question':p, 
             'show': True,
             'types': p.ty.all,
+            'loc': True
         })
 def about_view(request):
     return render(request, "about.html")
@@ -158,9 +158,9 @@ def results_view(request):
         print(location)
         print(selection)
         if selection:
-            results = findList(location, selection)
+            results = findList(search.location, selection)
         else:
-            results = randomize(location, search.places)
+            results = randomize(search.location, search.places)
         name = results['name']
         maps = "https://www.google.com/maps/search/"+name
         imageurl = results['imageurl']
@@ -197,7 +197,10 @@ def results_view(request):
                 'types' : types,
             })
     else:
+        
         search = get_object_or_404(SearchServices)
+        print("location: "+  search.location)
+        print("place: "+ search.places)
         location=search.location
         selection =  search.places
         if location == "_" or selection=="_":
@@ -206,7 +209,7 @@ def results_view(request):
                 })
         else:
             results = findList(location, selection)
-            
+           
             name = results['name']
             maps = "https://www.google.com/maps/search/"+name
             imageurl = results['imageurl']

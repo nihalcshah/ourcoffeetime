@@ -261,7 +261,7 @@ input:checked .container{
 
 .types{
   color: white;
-  padding: 3%;
+  padding: 10px;
   font-family: "STIX Two Text";
   background-color: #0b0f06;
   text-decoration: none;
@@ -305,4 +305,15 @@ input:checked .container{
 .next:hover{
     color: black;
     background-color: white;
+}
+
+.tryelse{
+  background-color: #363b23;
+}
+.tryelse:hover{
+  background-color: azure;
+}
+
+.black{
+  background-color: black;
 }

@@ -29,10 +29,14 @@
                         </label>
                         {% endfor %}
                     </div>
+                    {%if loc%}
                     <label class="location" style="display: inline-block;width: 100%;"> Location <input type="text" name="textfield"></label> <br>  <br>
                     <br>
+                    
                     <label class="location" style="display: inline-block;width: 100%;"> Keyword <input type="text" name="keyword"></label>
-                    <br><br><br>
+                    <br><br>
+                    {%endif%}
+                    <br>
                     <div>
                         <button class="button" type="submit" style="float: left; animation: none; display: inline-block;">Submit</button>
                         
@@ -44,9 +48,16 @@
             
         </div>
         {%else%}
-                <span style="font-size: 30px;">Submitted! Press "To Results" to view your results</span> <br>
-                <a class="next" href="{%url 'results' %}">To Results</a>
-            <!-- <img class="logo" src="{% static 'media/CoffeeTime.png'%}"> -->
+        <br>
+                <span style="font-size: 30px;">Submitted! Either:</span><br>
+                <ul style="font-size: 25px;">
+                    Press "To Results" to view your results<br>
+                    <a class="next"  href="{%url 'results' %}">To Results</a>
+                </ul> 
+                <ul style="font-size: 25px;  margin-top: 0%;">
+                    Or Press "Change Plans" to edit your criteria<br>
+                    <a class="next black"  href="{%url 'coffee' %}">Change Plans</a>
+                </ul>
         <br>
         {%endif%}
     </div>

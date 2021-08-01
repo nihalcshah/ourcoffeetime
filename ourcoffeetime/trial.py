@@ -12,15 +12,18 @@ def findList(location, place):
             'limit': 50}
     response = requests.get(search_api_url, headers=headers, params=params, timeout=5)
     results = response.json() 
+    print(place)
     m = results['businesses'][0]
     for k in results['businesses']:
         if k['rating'] >m['rating'] and k['review_count']>3:
             m=k
     cat = [ i['title'] for i in m['categories']]
+    print(m)
+    print(m['location']['address1'])
     try:
-        ldict = {'name': m['name'], 'imageurl':m['image_url'], 'url':m['url'], 'address': (m['location']['display_address'][0]+", "+m['location']['display_address'][1]), 'phone':m['display_phone'], 'rating':m['rating'], 'price':m['price'], 'type' :cat}    
+        ldict = {'name': m['name'], 'imageurl':m['image_url'], 'url':m['url'], 'address': (m['location']['address1']+", "+m['location']['city']) if m['location']['address1'] else 'No Address was Found', 'phone':m['display_phone'], 'rating':m['rating'], 'price':m['price'], 'type' :cat}    
     except KeyError:
-        ldict = {'name': m['name'], 'imageurl':m['image_url'], 'url':m['url'], 'address': (m['location']['display_address'][0]+", "+m['location']['display_address'][1]), 'phone':m['display_phone'], 'rating':m['rating'], 'type' :cat}    
+        ldict = {'name': m['name'], 'imageurl':m['image_url'], 'url':m['url'], 'address': (m['location']['address1']+", "+m['location']['city']) if m['location']['address1'] else 'No Address was Found', 'phone':m['display_phone'], 'rating':m['rating'], 'type' :cat}    
     return ldict
 
 # for i in ['name', 'imageurl', 'url', 'address', 'phone', 'rating', 'price', 'types']:
@@ -39,9 +42,9 @@ def randomize(location, place):
     m = results['businesses'][randomstore]
     cat = [ i['title'] for i in m['categories']]
     try:
-        ldict = {'name': m['name'], 'imageurl':m['image_url'], 'url':m['url'], 'address': (m['location']['display_address'][0]+", "+m['location']['display_address'][1]), 'phone':m['display_phone'], 'rating':m['rating'], 'price':m['price'], 'type' :cat}    
+        ldict = {'name': m['name'], 'imageurl':m['image_url'], 'url':m['url'], 'address': (m['location']['address1']+", "+m['location']['city']) if m['location']['address1'] else 'No Address was Found', 'phone':m['display_phone'], 'rating':m['rating'], 'price':m['price'], 'type' :cat}    
     except KeyError:
-        ldict = {'name': m['name'], 'imageurl':m['image_url'], 'url':m['url'], 'address': (m['location']['display_address'][0]+", "+m['location']['display_address'][1]), 'phone':m['display_phone'], 'rating':m['rating'], 'type' :cat}    
+        ldict = {'name': m['name'], 'imageurl':m['image_url'], 'url':m['url'], 'address': (m['location']['address1']+", "+m['location']['city']) if m['location']['address1'] else 'No Address was Found', 'phone':m['display_phone'], 'rating':m['rating'], 'type' :cat}    
     return ldict
 
     
