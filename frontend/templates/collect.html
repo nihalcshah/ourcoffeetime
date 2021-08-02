@@ -15,7 +15,7 @@
             <br>
             <div style="display: inline-block; width: 98%;">
                 
-                <form method="post" action=>
+                <form method="post" action="" >
                     {% csrf_token %} 
                     <div style="display: inline-flexbox;" >
                         {% for t in types%}
@@ -49,10 +49,10 @@
         </div>
         {%else%}
         <br>
-                <span style="font-size: 30px;">Submitted! Either:</span><br>
+                <span style="font-size: 30px;">Our engine has identified some options for you. Please either:</span><br>
                 <ul style="font-size: 25px;">
-                    Press "To Results" to view your results<br>
-                    <a class="next"  href="{%url 'results' %}">To Results</a>
+                    Press "Results" to view your results<br>
+                    <a class="next"  href="{%url 'results' %}">Results</a>
                 </ul> 
                 <ul style="font-size: 25px;  margin-top: 0%;">
                     Or Press "Change Plans" to edit your criteria<br>

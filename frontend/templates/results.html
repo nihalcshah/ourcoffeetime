@@ -19,7 +19,7 @@
                     <a  style="color: rgb(150, 64, 64);" href="{{url}}">Learn More</a>
                     <br>
                     <span>{{address}}</span><br>
-                    <span>{{phone}}</span>
+                    <span>{{phone}}</span><br>
                     <span>Rating: {{rating}}★</span><br>
                     <span>Categories:</span><br>
                     <span style="color: rgb(165, 55, 55); font-size: smaller;">Click on the categories to find more like this</span>
@@ -38,17 +38,19 @@
             
         {%else%}
             <div style="font-size: 30px;">
-                We don't have any data from your plans :( <br>
-                Fill out the Plans File! <br>
-                Make sure you fill out the Location Section <br>
+                We don't have any data from your plans<br>
+                Fill out the Plans Form <br>
+                Make sure you fill out the Location Section 
             </div>
 
 
         {% endif %}
         <br><br>
+        {%if show%}
         <div style="margin-left: 2%; ">
-            <button class="button tryelse" value="{{name}}" name="try" type="submit" style="animation: none;">Don't like this? Click to try something else!</button>
+            <button class="button" value="{{name}}" name="try" type="submit" style="animation: none;">Don't like this? Click here to try something else</button>
         </div>
+        {%endif%}
     </div>
     
             
