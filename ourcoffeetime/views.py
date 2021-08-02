@@ -160,11 +160,18 @@ def results_view(request):
         skip = request.POST.get('try')
         print(location)
         print(selection)
+        
         if selection:
             results = findList(search.location, selection)
         else:
             results = randomize(search.location, search.places)
         name = results['name']
+        if search.name == name:
+            best = True
+        else:
+            best = False
+        search.name = name
+        search.save()
         maps = "https://www.google.com/maps/search/"+name
         imageurl = results['imageurl']
         url = results['url']
@@ -180,6 +187,7 @@ def results_view(request):
                 'url' : url,
                 'results': True,
                 'address' : address,
+                'best': best,
                 'mapsurl': maps,
                 'phone' : phone,
                 'rating' : rating,
@@ -193,6 +201,7 @@ def results_view(request):
                 'url' : url,
                 'address' : address,
                 'results': True,
+                'best': best,
                 'mapsurl': maps,
                 'phone' : phone,
                 'rating' : rating,
@@ -212,8 +221,9 @@ def results_view(request):
                 })
         else:
             results = findList(location, selection)
-           
             name = results['name']
+            search.name = name
+            search.save()
             maps = "https://www.google.com/maps/search/"+name
             imageurl = results['imageurl']
             url = results['url']
@@ -228,6 +238,7 @@ def results_view(request):
                     'imageurl' : imageurl,
                     'url' : url,
                     'results': True,
+                    'best': False,
                     'address' : address,
                     'mapsurl': maps,
                     'phone' : phone,
@@ -241,6 +252,7 @@ def results_view(request):
                     'imageurl' : imageurl,
                     'url' : url,
                     'address' : address,
+                    'best': False,
                     'results': True,
                     'mapsurl': maps,
                     'phone' : phone,

@@ -26,7 +26,7 @@ class Question(models.Model):
 class SearchServices(models.Model):
     location = models.CharField(max_length=1000, default="Fairfax")
     places = models.CharField(max_length=5000, default="")
-
+    name = models.CharField(max_length=5000, default="_")
 
 
 # class TypesOfPlaces(models.Model):

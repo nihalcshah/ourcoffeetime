@@ -21,7 +21,11 @@
                     <span>{{address}}</span><br>
                     <span>{{phone}}</span><br>
                     <span>Rating: {{rating}}★</span><br>
+                    
                     <span>Categories:</span><br>
+                    {%if best%}
+                    <span style="color: rgb(165, 55, 55);">This is the best in its category</span> <br>
+                    {%endif%}
                     <span style="color: rgb(165, 55, 55); font-size: smaller;">Click on the categories to find more like this</span>
                 </div>
                 <br>
