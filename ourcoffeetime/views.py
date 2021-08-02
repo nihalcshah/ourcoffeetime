@@ -40,7 +40,10 @@ def collect_view(request):
             search.location = location
             search.save()
         if selection:
-            search.places = selection
+            if keyword:
+                search.places = keyword
+            else:
+                search.places = selection
             search.save()
         print(selection)
         print("searches " + search.location)

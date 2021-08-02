@@ -28,6 +28,7 @@ class SearchServices(models.Model):
     places = models.CharField(max_length=5000, default="")
 
 
+
 # class TypesOfPlaces(models.Model):
 #     question = models.CharField(max_length=1000)
 #     one = models.CharField(max_length=100, default="Food")
